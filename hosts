@@ -1,4 +1,4 @@
-tomcat ansible_host=44.202.189.228 ansible_user=ubuntu
+tomcat ansible_host=44.204.215.236 ansible_user=ubuntu
 backend ansible_host=44.202.41.149 ansible_user=ubuntu
 db ansible_host=34.227.29.75 ansible_user=ubuntu
 local ansible_connection=local

@@ -1,25 +1,30 @@
 ---
-- hosts: t1
+- hosts: tomcat
   become: true
   tasks:
           - name: update system
             apt:
                    upgrade: dist
-          - name: install java
+          - name: Reboot the machine to apply updates
+            ansible.builtin.reboot:
+          - name: update cache
             apt:
-                   name: default-jre
-                   state: present
+                   update_cache: yes
           - name: install jdk
             apt:
                    name: default-jdk
                    state: present
           - name: install tomcat
             apt:
-                   name: tomcat
+                   name: tomcat9
                    state: present
+          - name: copy war file from local to AWS webserver
+            copy:
+             src: /var/lib/jenkins/workspace/maven-project/target/addressbook.war
+             dest: /var/lib/tomcat9/webapps
           - name: start tomcat
             service:
-                   name: tomcat
+                   name: tomcat9
                    enabled: yes
                    state: started
 ...

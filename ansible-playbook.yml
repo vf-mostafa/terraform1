@@ -1,0 +1,25 @@
+---
+- hosts: t1
+  become: true
+  tasks:
+          - name: update system
+            apt:
+                   upgrade: dist
+          - name: install java
+            apt:
+                   name: default-jre
+                   state: present
+          - name: install jdk
+            apt:
+                   name: default-jdk
+                   state: present
+          - name: install tomcat
+            apt:
+                   name: tomcat
+                   state: present
+          - name: start tomcat
+            service:
+                   name: tomcat
+                   enabled: yes
+                   state: started
+...
